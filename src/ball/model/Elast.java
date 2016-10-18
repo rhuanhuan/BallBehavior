@@ -1,24 +1,26 @@
 package ball.model;
 
-import ball.Ball;
-
-public class ElasticBall extends BallImpl {
+public class Elast implements Behavior {
     public static final int GROWTH_RATE = 2;
-
     static final int GROW = 1;
     static final int SHRINK = -1;
 
     private int growthDirection;
-
-    ElasticBall(int x, int y, int radius, int growthDirection) {
-        super(x, y, radius);
-        this.growthDirection = growthDirection;
+    private int maxRadius=50;
+    Ball ball;
+    public Elast(Ball ball) {
+        this.ball=ball;
     }
 
     @Override
     public void update() {
         growthDirection = reverseGrowthDirectionIfNecessary();
-        radius = next();
+        ball.radius = next();
+    }
+
+    @Override
+    public int getY() {
+        return 0;
     }
 
     /***********************************************************************************
@@ -40,7 +42,7 @@ public class ElasticBall extends BallImpl {
     }
 
     private boolean growingTooBig() {
-        return radius >= Ball.DEFAULT_RADIUS && growing();
+        return radius >= maxRadius && growing();
     }
 
     private int switchDirection() {

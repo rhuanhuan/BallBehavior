@@ -1,6 +1,7 @@
 package ball.ui;
 
-import ball.Ball;
+
+import ball.model.Ball;
 
 import javax.swing.*;
 import java.awt.*;
